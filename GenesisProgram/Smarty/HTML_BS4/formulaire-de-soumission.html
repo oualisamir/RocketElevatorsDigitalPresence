@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+		<meta charset="utf-8" />
+		<title>Rocke_Elevators</title>
+		<meta name="description" content="" />
+		<meta name="Author" content="Dorin Grigoras [www.stepofweb.com]" />
+
+		<!-- mobile settings -->
+		<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
+		<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+
+		<!-- WEB FONTS : use %7C instead of | (pipe) -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600%7CRaleway:300,400,500,600,700%7CLato:300,400,400italic,600,700" rel="stylesheet" type="text/css" />
+
+		<!-- CORE CSS -->
+		<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+		<!-- REVOLUTION SLIDER -->
+		<link href="assets/plugins/slider.revolution/css/extralayers.css" rel="stylesheet" type="text/css" />
+		<link href="assets/plugins/slider.revolution/css/settings.css" rel="stylesheet" type="text/css" />
+
+		<!-- THEME CSS -->
+		<link href="assets/css/essentials.css" rel="stylesheet" type="text/css" />
+		<link href="assets/css/layout.css" rel="stylesheet" type="text/css" />
+
+		<!-- PAGE LEVEL SCRIPTS -->
+		<link href="assets/css/header-1.css" rel="stylesheet" type="text/css" />
+		<link href="assets/css/color_scheme/blue.css" rel="stylesheet" type="text/css" id="color_scheme" />
+	</head>
+
+<!--
+		AVAILABLE BODY CLASSES:
+		
+		smoothscroll 			= create a browser smooth scroll
+		enable-animation		= enable WOW animations
+
+		bg-grey					= grey background
+		grain-grey				= grey grain background
+		grain-blue				= blue grain background
+		grain-green				= green grain background
+		grain-blue				= blue grain background
+		grain-orange			= orange grain background
+		grain-yellow			= yellow grain background
+		
+		boxed 					= boxed layout
+		pattern1 ... patern11	= pattern background
+		menu-vertical-hide		= hidden, open on click
+		
+		BACKGROUND IMAGE [together with .boxed class]
+		
+	-->
+
+    <style>
+         body {
+            background-color:#db255c;
+            text-align:center
+        } 
+        #blockDiv {
+            background-color:#0A64A2;
+            padding: 1em;
+            text-align:center
+        }
+        #buttons { 
+            background-blend-mode:url(assets/images/Rocket_Elevator_Assets/a.jpg) no-repeat; 
+        }
+    </style>
+
+<body class="smoothscroll enable-animation" src="assets/images/Rocket_Elevator_Assets/a.jpg"  >
+
+
+
+	<!-- wrapper -->
+        <div id="wrapper">
+
+		    
+            <div id="header" class="navbar-toggleable-md sticky header-md clearfix">
+				<!-- TOP NAV -->
+				<header id="topNav">
+					<div class="container">
+                        
+						<!-- Mobile Menu Button -->
+						<button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
+							<i class="fa fa-bars"></i>
+						</button>
+
+						<!-- Logo -->
+						<a class="logo float-left scrollTo" href="#top">
+							<img src="assets/images/Rocket_Elevator_Assets/R2.png" alt="" />
+						</a>
+
+						<div class="navbar-collapse collapse float-right nav-main-collapse submenu-dark">
+							<nav class="nav-main">
+
+								<ul id="topMain" class="nav nav-pills nav-main nav-onepage">
+									<li class="active"><!-- HOME -->
+										<a href="index-onepage-construction.html">
+                                          	HOME
+										</a>
+									</li>
+								
+									<li class="dropdown"><!-- SERVICES -->
+										<a class="dropdown-toggle" href="#">
+											SERVICES
+										</a>
+										<ul class="dropdown-menu">
+	
+											<li><a  href="residential.html">Residential Services</a></li>
+											<li><a href="corporate.html">Corporate Services</a></li>
+										</ul>
+									</li>
+															
+																		
+									<li><!-- WORK -->
+										<a href="index-onepage-construction.html#work">
+											WORK
+										</a>
+									</li>
+
+									<li><!-- NEWS -->
+										<a href="index-onepage-construction.html#news">
+											NEWS
+										</a>
+									</li>
+									
+									<li><!-- CLIENTS -->
+										<a href="index-onepage-construction.html#clients">
+											CLIENTS
+										</a>
+									</li>
+									
+									<li><!-- CONTACT -->
+										<a href="index-onepage-construction.html#contact">
+											CONTACT
+										</a>
+									</li>
+								</ul>
+
+							</nav>
+						</div>
+
+					</div>
+				</header>
+				<!-- /Top Nav -->
+
+			</div>
+
+            
+            <!-- Building Selection -->
+        
+			<div > 
+                       
+                <a size="10">
+                    <label style="color: white">
+                        <b>First select type of service elevator</b>
+                    </label>
+                </a>
+				<select id="idSelect" name="idSelect" ; onchange="DisplayGoodDiv();">
+					<option value="">--- Select ---</option>
+					<option value="residential">Residential</option>
+					<option value="commercial">Commercial</option>
+					<option value="corporate">Corporate</option>
+					<option value="hybrid">Hybrid</option>
+				</select>
+			</Div >
+			<script>
+				function DisplayGoodDiv(){
+                    var _value =document.getElementById('idSelect').value;	
+					
+ 
+					var x = document.getElementsByClassName("MyDivs");
+					var i;
+					for (i = 0; i < x.length; i++) {
+						
+						if (_value  == x[i].id ) { x[i].style.display = ""; }
+					    else { x[i].style.display = "none"; }
+					};
+					
+				};
+                
+				var priceTypeAsc = 1.00;
+
+				function getPriceStandart(){
+					priceTypeAsc=document.getElementById('standard').value;
+					priceTypeAsc=parseFloat(priceTypeAsc)+priceTypeAsc*0.10;
+
+					
+				};
+
+				function getPricePremium(){					
+					priceTypeAsc=document.getElementById('premium').value;
+					priceTypeAsc=parseFloat(priceTypeAsc)+priceTypeAsc*0.13;
+				};
+				
+				function getPriceExeclium(){
+					priceTypeAsc=document.getElementById('execlium').value;
+					priceTypeAsc=parseFloat(priceTypeAsc)+priceTypeAsc*0.16;
+				};	
+					
+				function calculCommercial(){
+					
+				 	var _nbAsc =document.getElementById('commercialNumberCages').value; 
+					
+					var _value =document.getElementById('idSelect').value;
+				 	document.getElementById('totalPrice').value=_nbAsc*priceTypeAsc.toFixed(3) 
+					
+				}
+
+				function calculesResidential(){
+					
+					var _nbAsc =document.getElementById('residentialNumberCages').value; 
+				   
+				   var _value =document.getElementById('idSelect').value;
+					document.getElementById('totalPrice').value=_nbAsc*priceTypeAsc;
+					
+				}
+				function ResultNumberResidentialElevators() {  
+					var x = document.getElementById("residentNumberAppt").value || 0 ;
+					var y = document.getElementById("residentNumberFloor").value || 0 ;
+					var z = document.getElementById("numberBasment").value || 0;
+					var Nber = Math.ceil( x /(y*6) ); 
+											
+					var colonne =  Math.ceil(y /20);
+						
+					var  NberElevators = Nber*colonne;
+						if (x != 0  && y != 0   && z  != 0  )
+							{document.getElementById("residentNumberElevators").value= NberElevators;}
+						else {
+							document.getElementById("residentNumberElevators").value = 0;
+							}
+					
+					return NberElevators; 
+   				}
+
+
+				
+			</script>
+		<div >
+			<div>
+				<!-- if residential is chosen-->
+				<div class="MyDivs"  id="residential" style="display:none;" >
+					
+						<label style="color: white">Enter the number of apartments</label>
+						<input id="residentNumberAppt" type="number">
+						<label style="color: white">Enter the number of floors</label>
+						<input id="residentNumberFloor" type="number">
+						<label style="color: white">Enter the number of basements</label>
+						<input id="numberBasment" type="number">
+						<br>
+						<br>
+						<label style="color: white">The number of elevators you need:</label>
+						<input id="residentNumberElevators" type="number"  />
+						
+			
+				</div>
+
+				<!-- if commercial is chosen-->
+
+				<div class="MyDivs" id="commercial" style="display:none;">
+					
+						<label style="color: white">Enter the number of distinct business</label>
+						<input id="numberBusiness" type="number">
+						<label style="color: white">Enter the number of floors</label>
+						<input id="numberFloor" type="number">
+						<label style="color: white">Enter the number of basements</label>
+						<input id="numberBasment" type="number">
+						<label style="color: white">Enter the number of available parking</label>
+						<input id="numberParking" type="number">
+						<label style="color: white">Enter the number of elevator shafts</label>
+						<input id="commercialNumberCages" type="real" onchange="calculCommercial();">
+						<br>
+						<br>
+						<label style="color: white">The number of elevators you need:</label>
+						<input id="commercialNumberElevators" type="number" disabled />
+											
+				</div>
+
+				<!-- if coporate is chosen-->
+
+				<div class="MyDivs"  id="corporate" style="display:none;">
+					
+						<label style="color: white">Enter the number of seperate company tenants</label>
+						<input id="numberTenants" type="number">
+						<label style="color: white">Enter the number of floors</label>
+						<input id="corpNumberFloor" type="number">
+						<label style="color: white">Enter the number of basements</label>
+						<input id="corpNumberBasement" type="number">
+						<label style="color: white">Enter the number of available parking</label>
+						<input class="numberParking" type="number">
+						<label style="color: white">Enter the maximum number of people per floor</label>
+						<input id="corpNumberPeople" type="number">
+						<br>
+						<br>
+						<label style="color: white">The number of elevators you need:</label>
+						<input id="corpNumberElevators" type="number" disabled />
+											
+				</div>
+
+
+				<!-- If Hybrid is chosen-->
+
+				<div class="MyDivs" id="hybrid" style="display:none;">
+					
+						<label style="color: white">Enter the number of distinct business</label>
+						<input id="numberBusiness" type="number">
+						<label style="color: white">Enter the number of floors</label>
+						<input id="hybridNumberFloor" type="number">
+						<label style="color: white">Enter the number of basements</label>
+						<input id="hybridNumberBasement" type="number">
+						<label style="color: white">Enter the number of available parking</label>
+						<input id="numberParking" type="number">
+						<label style="color: white">Enter the maximum number of people per floor</label>
+						<input id="hybridNumberPeople" type="number">
+						<label style="color: white">Enter the number of hours of activity of the building</label>
+						<input id="numberHours" type="number">
+						<br>
+						<br>
+						<label style="color: white">The number of elevators you need:</label>
+						<input id="hybridnumberElevators" type="number" disabled />
+					
+					
+				</div>
+	        </div>
+
+        
+        
+            <!-- /RADIO BUTTONS -->
+        <figure id="blockDiv">
+            <div >
+               
+                    <h3 style="color:white">
+                        <a size="7">Select the product line:</a>
+                    </h3>
+                        <hr>
+                        <label style="color:white"><input value="7.565" onchange="getPriceStandart();calculCommercial();" id="standard" type="radio" name="selector" label="standard" />
+                            <a size="5">Standard</a>
+                        </label>
+                        <label style="color:white"><input value="12.345" onchange="getPricePremium();calculCommercial();" id="premium" type="radio" name="selector" label="premium" />
+                            <a size="5">Premium</a>
+                        </label>
+                        <label style="color:white"><input value="15.400" onchange="getPriceExeclium();calculCommercial();" id="execlium" type="radio" name="selector" label="excelium" />
+                            <a size="5">Excelium</a>
+                        </label>
+                
+            </div>
+
+            <!-- /RADIO BUTTONS -->   
+
+
+            <div>
+                <div>
+                    <label style="color: white">
+                        <a size="5">Elevator Prices</a>
+                    </label>
+                    <input id="elevatorPrice" type="number" disabled>
+                </div>
+                <div>
+                    <label style="color: white">
+                        <a size="5">Elevator Service Price</a>
+                    </label>
+                    <input id="servicePrice" type="number" disabled>
+                </div>
+                <div>
+                    <label style="color: white">
+                        <a size="7"><b><strong>Total Price</strong></b></a>
+                    </label>
+                    <input id="totalPrice" type="number" disabled>
+                </div>
+            </div>
+        </figure>>
+        </div>
+	
+
+</body>
+<hr>
+
+<!-- FOOTER -->
+<footer id="footer" >
+    <div class="container">
+
+
+        <div class="row">
+
+            <!-- col #1 -->
+            <div class="col-md-8">
+
+                <h3 class="letter-spacing-1">CHOOSE ROKECT ELEVATORS</h3>
+
+                <!-- Small Description -->
+                <p>
+                    Do you want good value for money, choose Rocket Elevator, it offers you better services with more than 40 years of experience.
+                </p>
+                <h2><a href="tel:581-701-0303">(581) 701-0303</a></h2>
+            </div>
+            <!-- /col #1 -->
+
+        </div>
+    </div>
+
+    <div class="copyright">
+        <div class="container">
+            &copy; Tous droits réservés, Rocket Elevators LTD
+        </div>
+    </div>
+</footer>
+<!-- /FOOTER -->
