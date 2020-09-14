@@ -60,11 +60,19 @@
         #blockDiv {
             background-color:#0A64A2;
             padding: 1em;
-            text-align:center
+            text-align:center;
+			
         }
         #buttons { 
             background-blend-mode:url(assets/images/Rocket_Elevator_Assets/a.jpg) no-repeat; 
-        }
+		}
+		.container {
+			
+			left: 0;		
+			text-align: left ;
+		}
+		
+			
     </style>
 
 <body class="smoothscroll enable-animation" src="assets/images/Rocket_Elevator_Assets/a.jpg"  >
@@ -165,7 +173,24 @@
 				</select>
 			</Div >
 			<script>
+
+				
+				function InisialiseOption(){
+					document.getElementById("standard").checked = false;
+					document.getElementById("premium").checked = false;
+					document.getElementById("execlium").checked = false;
+
+				};
+				function InisialiseResult(){	
+                    document.getElementById('elevatorPrice').value='';
+					document.getElementById('servicePrice').value='';
+					document.getElementById('totalPrice').value='';
+				};
+
 				function DisplayGoodDiv(){
+                    InisialiseOption();
+					InisialiseResult();
+
                     var _value =document.getElementById('idSelect').value;	
 					
  
@@ -180,80 +205,215 @@
 				};
                 
 				var priceTypeAsc = 1.00;
+				//var C_nombreEleva=1;
+				//var nombreEleva;
 
 				function getPriceStandart(){
-					priceTypeAsc=document.getElementById('standard').value;
-					priceTypeAsc=parseFloat(priceTypeAsc)+priceTypeAsc*0.10;
+					var nombreEleva;
+					var TypeBatiment =document.getElementById('idSelect');
+					if (TypeBatiment.value=="residential"){ 
+                        nombreEleva=document.getElementById('rNumberElevators').value ;
+                  
+					} else if (TypeBatiment.value=="commercial") {
+                        nombreEleva=document.getElementById('cNumberElevators').value ;
+					} else if (TypeBatiment.value=="corporate") {
+                        nombreEleva=document.getElementById('corpNumberElevators').value ;
+					} else if (TypeBatiment.value=="hybrid") {
+                        nombreEleva=document.getElementById('hybridNumberElevators').value ;
+					}
+								
 
+					priceTypeAsc=document.getElementById('standard').value;
 					
+					var priceType=priceTypeAsc*nombreEleva;
+					document.getElementById('elevatorPrice').value=priceType.toFixed(3);
+					var blabla=priceType*nombreEleva*0.10;
+					
+					document.getElementById('servicePrice').value=blabla.toFixed(3); 
+					
+					var allo=blabla+priceType;
+					
+					document.getElementById('totalPrice').value=allo.toFixed(3);//  parseFloat(priceTypeAsc)+priceTypeAsc*0.10;
+                    
+					//setTimeout(myFunction, 250);
 				};
 
-				function getPricePremium(){					
+				function getPricePremium(){		
+					var nombreEleva;
+					var TypeBatiment =document.getElementById('idSelect');
+					if (TypeBatiment.value=="residential"){ 
+                        nombreEleva=document.getElementById('rNumberElevators').value ;
+                  
+					} else if (TypeBatiment.value=="commercial") {
+                        nombreEleva=document.getElementById('cNumberElevators').value ;
+					} else if (TypeBatiment.value=="corporate") {
+                        nombreEleva=document.getElementById('corpNumberElevators').value ;
+					} else if (TypeBatiment.value=="hybrid") {
+                        nombreEleva=document.getElementById('hybridNumberElevators').value ;
+					}
+								
+
 					priceTypeAsc=document.getElementById('premium').value;
-					priceTypeAsc=parseFloat(priceTypeAsc)+priceTypeAsc*0.13;
+					
+					var priceType=priceTypeAsc*nombreEleva;
+					document.getElementById('elevatorPrice').value=priceType.toFixed(3);
+					var blabla=priceType*nombreEleva*0.13;
+					
+					document.getElementById('servicePrice').value=blabla.toFixed(3); 
+					
+					var allo=blabla+priceType;
+					
+					document.getElementById('totalPrice').value=allo.toFixed(3);
 				};
 				
 				function getPriceExeclium(){
+					
+					var nombreEleva;
+					var TypeBatiment =document.getElementById('idSelect');
+					if (TypeBatiment.value=="residential"){ 
+                        nombreEleva=document.getElementById('rNumberElevators').value ;
+                  
+					} else if (TypeBatiment.value=="commercial") {
+                        nombreEleva=document.getElementById('cNumberElevators').value ;
+					} else if (TypeBatiment.value=="corporate") {
+                        nombreEleva=document.getElementById('corpNumberElevators').value ;
+					} else if (TypeBatiment.value=="hybrid") {
+                        nombreEleva=document.getElementById('hybridNumberElevators').value ;
+					}
+								
+
 					priceTypeAsc=document.getElementById('execlium').value;
-					priceTypeAsc=parseFloat(priceTypeAsc)+priceTypeAsc*0.16;
-				};	
 					
-				function calculCommercial(){
+					var priceType=priceTypeAsc*nombreEleva;
+					document.getElementById('elevatorPrice').value=priceType.toFixed(3);
+					var blabla=priceType*nombreEleva*0.16;
 					
-				 	var _nbAsc =document.getElementById('commercialNumberCages').value; 
+					document.getElementById('servicePrice').value=blabla.toFixed(3); 
 					
-					var _value =document.getElementById('idSelect').value;
-				 	document.getElementById('totalPrice').value=_nbAsc*priceTypeAsc.toFixed(3) 
+					var allo=blabla+priceType;
 					
-				}
+					document.getElementById('totalPrice').value=allo.toFixed(3);
+				};
 
-				function calculesResidential(){
+				// function PriceTotal(){
+					// var priceStandar = getPriceStandart();
+					// var priceExeclium = getPriceExeclium();
+					// var priceExeclium = getPriceExeclium();
+					// var priceTotal = parseFloat(priceStandar) + parseFloat(priceExeclium) + parseFloat(priceExeclium);
 					
-					var _nbAsc =document.getElementById('residentialNumberCages').value; 
-				   
-				   var _value =document.getElementById('idSelect').value;
-					document.getElementById('totalPrice').value=_nbAsc*priceTypeAsc;
+					// document.getElementById('totalPrice').value = priceTotal.toFixed(3);
 					
-				}
-				function ResultNumberResidentialElevators() {  
-					var x = document.getElementById("residentNumberAppt").value || 0 ;
-					var y = document.getElementById("residentNumberFloor").value || 0 ;
-					var z = document.getElementById("numberBasment").value || 0;
-					var Nber = Math.ceil( x /(y*6) ); 
-											
-					var colonne =  Math.ceil(y /20);
-						
-					var  NberElevators = Nber*colonne;
-						if (x != 0  && y != 0   && z  != 0  )
-							{document.getElementById("residentNumberElevators").value= NberElevators;}
-						else {
-							document.getElementById("residentNumberElevators").value = 0;
+				// };
+
+				function calculesResidential() {  
+						var x = document.getElementById("residentNumberAppt").value ;
+						var y = document.getElementById("residentNumberFloor").value  ;
+						var z = document.getElementById("numberBasment").value ;
+						if ( x > 0   && y > 0 ){
+							var MoyApptperEtage = Math.ceil(x /(y*6)) ; 
+							var colonne = 0;
+							if ( y < 20 ){
+								colonne = 1;}
+							else {
+								colonne =  Math.ceil(y /20);
 							}
+							document.getElementById("rNumberElevators").value= MoyApptperEtage * colonne;
+							//alert(colonne)	;
+							var _nbAsc =document.getElementById('rNumberElevators').value;
+							
+							
+							document.getElementById('rNumberElevators').value= _nbAsc ;
+							var toto=_nbAsc*priceTypeAsc;
+							document.getElementById('totalPrice').value=toto.toFixed(3) ;
+
+						};	
+						
+					};
+
+					function calculCommercial(){
+						
+						
+						var _nbAsc =document.getElementById('commercialNumberCages').value; 
+						//alert(_nbAsc);
+						//var _value =document.getElementById('idSelect').value;
+						document.getElementById('cNumberElevators').value= _nbAsc ;
+						var toto=_nbAsc*priceTypeAsc;
+						document.getElementById('totalPrice').value=toto.toFixed(3) ;		
+							
+			   		};
+
+					function calculCorporate() {
 					
-					return NberElevators; 
-   				}
+						var Susiness = document.getElementById("numberTenants").value;
+						var Floor = document.getElementById("corpNumberFloor").value ;											
+						var Bassement = document.getElementById("corpNumberBasement").value;						
+						var Parking = document.getElementById("numberParking").value;
+						var People = document.getElementById("corpNumberPeople").value;								
+											
+						var NberElevatorsByPeople = Math.ceil( People*(Floor+Bassement)/1000 ); 
+																								
+						var colonne =  Math.ceil((Floor+Bassement)/20);
+					
+						var NberResultElevatorsByCol =  Math.ceil(NberElevatorsByPeople/colonne);
+					
+						var NberElevators=   NberResultElevatorsByCol*colonne;        
+																			
+						document.getElementById("corpNumberElevators").value = NberElevators;  
 
+						var _nbAsc =document.getElementById('corpNumberElevators').value; 
+						document.getElementById('corpNumberElevators').value= _nbAsc ;
+							var toto=_nbAsc*priceTypeAsc;
+							document.getElementById('totalPrice').value=toto.toFixed(3) ;
+								
+					};
 
-				
-			</script>
+					function calculHybrid() {
+							
+						var Susiness = document.getElementById("numberBusiness").value;
+						var Floor = document.getElementById("hybridNumberFloor").value ;											
+						var Bassement = document.getElementById("hybridNumberBasement").value;						
+						var Parking = document.getElementById("numberParking").value;
+						var People = document.getElementById("hybridNumberPeople").value;								
+						var Hours = document.getElementById("numberHours").value;
+						   
+						var NberElevatorsByPeople = Math.ceil( People*(Floor+Bassement)/1000 ); 
+																									
+						var colonne =  Math.ceil((Floor+Bassement)/20);
+						 
+						var NberResultElevatorsByCol =  Math.ceil(NberElevatorsByPeople/colonne);
+						   
+						var NberElevators=   NberResultElevatorsByCol*colonne;        
+																				
+						document.getElementById("hybridNumberElevators").value = NberElevators;  
+
+						var _nbAsc =document.getElementById('hybridNumberElevators').value; 
+						document.getElementById('totalPrice').value=_nbAsc*priceTypeAsc.toFixed(3) ;
+										
+					};
+
+				</script>
 		<div >
+
+
 			<div>
 				<!-- if residential is chosen-->
 				<div class="MyDivs"  id="residential" style="display:none;" >
 					
 						<label style="color: white">Enter the number of apartments</label>
-						<input id="residentNumberAppt" type="number">
+						<input id="residentNumberAppt"  onchange="InisialiseOption();calculesResidential();"  type="number">
 						<label style="color: white">Enter the number of floors</label>
-						<input id="residentNumberFloor" type="number">
+						<input id="residentNumberFloor"  onchange="InisialiseOption();calculesResidential();" type="number">
 						<label style="color: white">Enter the number of basements</label>
 						<input id="numberBasment" type="number">
 						<br>
 						<br>
 						<label style="color: white">The number of elevators you need:</label>
-						<input id="residentNumberElevators" type="number"  />
-						
-			
+						<input id="rNumberElevators"   type="number" disabled />
 				</div>
+				<script>
+					
+				</script>
+
 
 				<!-- if commercial is chosen-->
 
@@ -268,34 +428,38 @@
 						<label style="color: white">Enter the number of available parking</label>
 						<input id="numberParking" type="number">
 						<label style="color: white">Enter the number of elevator shafts</label>
-						<input id="commercialNumberCages" type="real" onchange="calculCommercial();">
+						<input id="commercialNumberCages" type="number" onchange="InisialiseOption();calculCommercial();">
 						<br>
 						<br>
 						<label style="color: white">The number of elevators you need:</label>
-						<input id="commercialNumberElevators" type="number" disabled />
+						<input id="cNumberElevators" type="number" disabled />
 											
 				</div>
 
+			
 				<!-- if coporate is chosen-->
 
 				<div class="MyDivs"  id="corporate" style="display:none;">
 					
 						<label style="color: white">Enter the number of seperate company tenants</label>
-						<input id="numberTenants" type="number">
+						<input id="numberTenants" onchange="InisialiseOption();calculCorporate();" type="number">
 						<label style="color: white">Enter the number of floors</label>
-						<input id="corpNumberFloor" type="number">
+						<input id="corpNumberFloor" onchange="InisialiseOption();calculCorporate();" type="number">
 						<label style="color: white">Enter the number of basements</label>
-						<input id="corpNumberBasement" type="number">
+						<input id="corpNumberBasement" onchange="InisialiseOption();calculCorporate();" type="number">
 						<label style="color: white">Enter the number of available parking</label>
-						<input class="numberParking" type="number">
+						<input class="numberParking" onchange="InisialiseOption();calculCorporate();" type="number">
 						<label style="color: white">Enter the maximum number of people per floor</label>
-						<input id="corpNumberPeople" type="number">
+						<input id="corpNumberPeople" onchange="InisialiseOption();calculCorporate();" type="number">
 						<br>
 						<br>
 						<label style="color: white">The number of elevators you need:</label>
 						<input id="corpNumberElevators" type="number" disabled />
-											
 				</div>
+
+				<script>
+					
+				</script>
 
 
 				<!-- If Hybrid is chosen-->
@@ -303,22 +467,21 @@
 				<div class="MyDivs" id="hybrid" style="display:none;">
 					
 						<label style="color: white">Enter the number of distinct business</label>
-						<input id="numberBusiness" type="number">
+						<input id="numberBusiness" onchange="InisialiseOption();calculHybrid();" type="number">
 						<label style="color: white">Enter the number of floors</label>
-						<input id="hybridNumberFloor" type="number">
+						<input id="hybridNumberFloor" onchange="InisialiseOption();calculHybrid();" type="number">
 						<label style="color: white">Enter the number of basements</label>
-						<input id="hybridNumberBasement" type="number">
+						<input id="hybridNumberBasement" onchange="InisialiseOption();calculHybrid();" type="number">
 						<label style="color: white">Enter the number of available parking</label>
-						<input id="numberParking" type="number">
+						<input id="numberParking" onchange="InisialiseOption();calculHybrid();" type="number">
 						<label style="color: white">Enter the maximum number of people per floor</label>
-						<input id="hybridNumberPeople" type="number">
+						<input id="hybridNumberPeople" onchange="InisialiseOption();calculHybrid();" type="number">
 						<label style="color: white">Enter the number of hours of activity of the building</label>
-						<input id="numberHours" type="number">
+						<input id="numberHours" onchange="InisialiseOption();calculHybrid();" type="number">
 						<br>
 						<br>
 						<label style="color: white">The number of elevators you need:</label>
-						<input id="hybridnumberElevators" type="number" disabled />
-					
+						<input id="hybridNumberElevators" type="number" disabled />
 					
 				</div>
 	        </div>
@@ -327,81 +490,84 @@
         
             <!-- /RADIO BUTTONS -->
         <figure id="blockDiv">
-            <div >
+            <div id =center>
                
                     <h3 style="color:white">
                         <a size="7">Select the product line:</a>
                     </h3>
                         <hr>
-                        <label style="color:white"><input value="7.565" onchange="getPriceStandart();calculCommercial();" id="standard" type="radio" name="selector" label="standard" />
+                        <label style="color:white"><input  value="7.565" onchange="getPriceStandart();" id="standard" type="radio" name="selector" label="standard" />
                             <a size="5">Standard</a>
                         </label>
-                        <label style="color:white"><input value="12.345" onchange="getPricePremium();calculCommercial();" id="premium" type="radio" name="selector" label="premium" />
+                        <label style="color:white"><input value="12.345" onchange="getPricePremium()" id="premium" type="radio" name="selector" label="premium" />
                             <a size="5">Premium</a>
                         </label>
-                        <label style="color:white"><input value="15.400" onchange="getPriceExeclium();calculCommercial();" id="execlium" type="radio" name="selector" label="excelium" />
+                        <label  style="color:white"><input value="15.400" onchange="getPriceExeclium();" id="execlium" type="radio" name="selector" label="excelium" />
                             <a size="5">Excelium</a>
                         </label>
                 
             </div>
-
+			<br/>
+			<br/>
+		
             <!-- /RADIO BUTTONS -->   
 
 
             <div>
                 <div>
                     <label style="color: white">
-                        <a size="5">Elevator Prices</a>
+                        <a size="5">Elevator Prices ($)</a>
                     </label>
-                    <input id="elevatorPrice" type="number" disabled>
+                    <input id="elevatorPrice" type="text" disabled>
                 </div>
                 <div>
                     <label style="color: white">
-                        <a size="5">Elevator Service Price</a>
+                        <a size="5">Elevator Service Price ($)</a>
                     </label>
-                    <input id="servicePrice" type="number" disabled>
+                    <input id="servicePrice" type="text" disabled>
                 </div>
                 <div>
                     <label style="color: white">
-                        <a size="7"><b><strong>Total Price</strong></b></a>
+                        <a size="7"><b><strong>Total Price ($)</strong></b></a>
                     </label>
-                    <input id="totalPrice" type="number" disabled>
+                    <input id="totalPrice"  type="text" disabled>
                 </div>
             </div>
-        </figure>>
+        </figure>
         </div>
 	
-
-</body>
-<hr>
-
-<!-- FOOTER -->
-<footer id="footer" >
-    <div class="container">
+		<!-- FOOTER -->
 
 
-        <div class="row">
+	</body>
+	<footer id="footer">
+		<div class="container">
 
-            <!-- col #1 -->
-            <div class="col-md-8">
 
-                <h3 class="letter-spacing-1">CHOOSE ROKECT ELEVATORS</h3>
+			<div class="row">
 
-                <!-- Small Description -->
-                <p>
-                    Do you want good value for money, choose Rocket Elevator, it offers you better services with more than 40 years of experience.
-                </p>
-                <h2><a href="tel:581-701-0303">(581) 701-0303</a></h2>
-            </div>
-            <!-- /col #1 -->
+				<!-- col #1 -->
+				<div class="col-md-8">
 
-        </div>
-    </div>
+					<h3 class="letter-spacing-1">CHOOSE ROKECT ELEVATORS</h3>
 
-    <div class="copyright">
-        <div class="container">
-            &copy; Tous droits réservés, Rocket Elevators LTD
-        </div>
-    </div>
-</footer>
-<!-- /FOOTER -->
+					<!-- Small Description -->
+					<p>
+						Do you want good value for money, choose Rocket Elevator, it offers you better services with more than 40 years of experience.
+					</p>
+					<h2><a href="tel:581-701-0303">(581) 701-0303</a></h2>
+				</div>
+				<!-- /col #1 -->
+
+			</div>
+		</div>
+
+		<div class="copyright">
+			<div class="container">
+				&copy; Tous droits réservés, Rocket Elevators LTD
+			</div>
+		</div>
+	</footer>
+	<!-- /FOOTER -->
+
+</html>

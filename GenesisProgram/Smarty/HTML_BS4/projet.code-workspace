@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\..\\..\\ExerciceGit1"
+		},
+		{
+			"path": "..\\..\\..\\..\\ExerciceGit1\\GenesisProgram"
+		},
+		{
+			"path": "..\\..\\.."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "ExerciceGit1"
+	}
+}
